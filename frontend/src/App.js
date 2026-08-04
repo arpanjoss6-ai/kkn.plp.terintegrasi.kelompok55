@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { CursorGlow } from "./components/CursorGlow";
 import { EditorialMarquee } from "./components/EditorialMarquee";
 import { FloatingButtons } from "./components/FloatingButtons";
 import { Footer } from "./components/Footer";
@@ -34,7 +33,6 @@ function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <AnimatePresence>{!loaded && <LoadingScreen />}</AnimatePresence>
-      <CursorGlow />
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
       <main>
         <Hero loaded={loaded} />

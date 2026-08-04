@@ -161,7 +161,16 @@ export const Footer = () => {
             © 2026 {site.name} {site.group} • {site.village}. All rights
             reserved.
           </p>
-          <p className="text-xs text-white/45">{site.university} • LP2M</p>
+          <div className="flex items-center gap-5">
+            <p className="text-xs text-white/45">{site.university} • LP2M</p>
+            <a
+              href="/admin/login"
+              data-testid="footer-admin-login-link"
+              className="rounded-full bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/55 ring-1 ring-white/10 transition-colors duration-200 hover:bg-gold-400 hover:text-slate-900"
+            >
+              Login Admin
+            </a>
+          </div>
         </div>
       </div>
     </footer>

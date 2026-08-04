@@ -21,10 +21,10 @@ const socials = [
 ];
 
 const programLinks = [
-  { label: "Gerakan Eco Masjid", href: "#program" },
-  { label: "Sedekah Sampah", href: "#program" },
-  { label: "Bimbingan Belajar", href: "#program" },
-  { label: "Digitalisasi Layanan", href: "#program" },
+  { label: "Eco Masjid", href: "#program" },
+  { label: "BPJS Ketenagakerjaan", href: "#program" },
+  { label: "Bimbingan Belajar Cendekia", href: "#program" },
+  { label: "TPQ Al-Maula", href: "#program" },
 ];
 
 export const Footer = () => {

@@ -14,7 +14,12 @@ import { siteConfig } from "../data/siteConfig";
 import { stats } from "../data/stats";
 
 const iconMap = { Users, School, MapPin, CalendarDays };
-const highlights = ["Eco Masjid", "Sedekah Sampah", "Literasi", "Digitalisasi"];
+const highlights = [
+  "Eco Masjid",
+  "BPJS Ketenagakerjaan",
+  "Bimbel Cendekia",
+  "TPQ Al-Maula",
+];
 
 const StatCard = ({ stat, started }) => {
   const Icon = iconMap[stat.icon];

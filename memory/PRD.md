@@ -18,6 +18,7 @@ Landing page modern, premium, elegan, responsif, dan interaktif untuk KKN Angkat
 Hero 100vh + logo + CTA; sticky glass navbar + scroll progress; Tentang + animated counters; Program Kerja (7 kategori); Timeline 6 fase; Galeri masonry + lightbox; Artikel; Google Maps + info lokasi; Quick Access Hub 14 link; Tim; FAQ; Testimoni slider; Logo mitra marquee; Kontak; Footer premium; Dark mode (ikut sistem); loading screen; floating WA + back-to-top; particles; cursor glow; PWA-ready; SEO meta.
 
 ## Yang Sudah Diimplementasikan (4 Agu 2026)
+- Section Program Kerja disesuaikan dengan dokumen proker asli (foto dari user): Primer — Eco Masjid (6 tahap: sosialisasi Masjid Jami' Sunan Kalijaga, SDN 07 KDW, Ponpes Miftahul Huda, pelatihan pemilahan & drop box, pembentukan tim, monitoring) dan BPJS Ketenagakerjaan (observasi, edukasi, implementasi); Sekunder — 11 kegiatan (Tahlilan, Manaqib & Pengajian, TPQ Al-Maula, One Day Without Handphone, Bimbel Cendekia, HUT RI TPQ, Tirakatan, HUT RI Paesan Utara & Gembong, Karnaval, Maulid Nabi Gembong, Pasar Jajan) lengkap dengan jadwal
 - Halaman baca artikel `/artikel/:id`: isi tulisan utuh 6 artikel (paragraf, subjudul, kutipan tokoh, drop cap), tombol bagikan WhatsApp/Facebook/Salin Tautan, artikel terkait, halaman 404 khusus, judul tab dinamis, header khusus dengan tombol kembali + toggle tema
 - Routing react-router: `/` landing page, `/artikel/:id` halaman artikel; tombol "Baca Selengkapnya" mengarah ke halaman artikel
 - Seluruh 12 section lengkap dengan data placeholder realistis (Bahasa Indonesia).

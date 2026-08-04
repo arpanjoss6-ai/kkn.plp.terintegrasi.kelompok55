@@ -1,83 +1,114 @@
-export const programs = [
+export const primerPrograms = [
   {
     id: "eco-masjid",
     icon: "Sparkles",
-    title: "Gerakan Eco Masjid",
+    title: "Eco Masjid",
     category: "Eco Masjid",
     description:
-      "Menjadikan masjid sebagai pusat gerakan peduli lingkungan: Jumat bersih, dakwah hijau, dan pembentukan kader Eco Masjid di setiap takmir.",
-    span: "md:col-span-2",
+      "Program unggulan: menjadikan masjid pusat gerakan peduli lingkungan melalui sedekah sampah — dari sosialisasi, pelatihan pemilahan, simulasi drop box, hingga pembentukan tim berkelanjutan.",
+    steps: [
+      { text: "Sosialisasi Masjid Jami' Sunan Kalijaga", date: "20–27 Juli" },
+      { text: "Sosialisasi SDN 07 Kedungwuni", date: "7 Agustus" },
+      { text: "Sosialisasi Pon. Pes. Miftahul Huda", date: "7 Agustus" },
+      {
+        text: "Pelatihan Pemilahan Sampah, Pencatatan & Administrasi, serta Simulasi Penggunaan Drop Box",
+        date: "14 Agustus",
+      },
+      { text: "Pembentukan Tim dan Pengumpulan Sampah", date: "27 Juli – 14 Agustus" },
+      { text: "Monitoring", date: "1 Oktober" },
+    ],
   },
   {
-    id: "sedekah-sampah",
-    icon: "Recycle",
-    title: "Sedekah Sampah",
-    category: "Sedekah Sampah",
+    id: "bpjs",
+    icon: "HandHeart",
+    title: "BPJS Ketenagakerjaan",
+    category: "Sosial",
     description:
-      "Jamaah menyetorkan sampah terpilah sebagai sedekah; hasil penjualan dikembalikan untuk kegiatan sosial masjid.",
-    span: "",
+      "Pendampingan kepesertaan jaminan sosial ketenagakerjaan bagi warga pekerja informal di Kedungwuni Barat — dari observasi hingga pendaftaran.",
+    steps: [
+      { text: "Observasi", date: "15–30 Juli" },
+      { text: "Edukasi", date: "31 Juli – 15 Agustus" },
+      { text: "Implementasi", date: "16–19 September" },
+    ],
+  },
+];
+
+export const sekunderPrograms = [
+  {
+    id: "tahlilan",
+    icon: "BookOpen",
+    title: "Tahlilan",
+    category: "Keagamaan",
+    schedule: "Setiap Malam Jum'at",
   },
   {
-    id: "bank-sampah",
-    icon: "Coins",
-    title: "Bank Sampah Berkah",
-    category: "Sedekah Sampah",
-    description:
-      "Membangun sistem tabungan sampah warga dengan buku tabungan digital dan jadwal penimbangan rutin.",
-    span: "",
+    id: "manaqib",
+    icon: "BookMarked",
+    title: "Manaqib & Pengajian",
+    category: "Keagamaan",
+    schedule: "Setiap Rabu Kliwon",
+  },
+  {
+    id: "tpq",
+    icon: "GraduationCap",
+    title: "TPQ Al-Maula",
+    category: "Pendidikan",
+    schedule: "Setiap Jum'at & Ahad",
+  },
+  {
+    id: "one-day",
+    icon: "MonitorSmartphone",
+    title: "One Day Without Handphone",
+    category: "Sosial",
+    schedule: "Setiap Ahad",
   },
   {
     id: "bimbel",
-    icon: "GraduationCap",
-    title: "Bimbingan Belajar & Literasi",
+    icon: "School",
+    title: "Bimbingan Belajar Cendekia",
     category: "Pendidikan",
-    description:
-      "Kelas gratis matematika, bahasa Inggris, dan pojok baca untuk siswa SD–SMP di 4 sekolah mitra.",
-    span: "",
+    schedule: "Setiap Jum'at & Ahad",
   },
   {
-    id: "tahsin",
-    icon: "BookOpen",
-    title: "Tahsin & Pembinaan TPQ",
-    category: "Keagamaan",
-    description:
-      "Perbaikan bacaan Al-Qur'an santri TPQ serta pelatihan metode mengajar yang menyenangkan bagi ustadz/ustadzah.",
-    span: "",
+    id: "hut-tpq",
+    icon: "Flag",
+    title: "Perayaan Kemerdekaan TPQ Al-Maula (HUT RI)",
+    category: "Acara",
+    schedule: "9 Agustus 2026",
   },
   {
-    id: "penghijauan",
-    icon: "Leaf",
-    title: "Kerja Bakti & Penghijauan",
-    category: "Lingkungan",
-    description:
-      "Aksi bersih lingkungan, penanaman pohon produktif, dan pembuatan lubang biopori bersama warga.",
-    span: "",
-  },
-  {
-    id: "digitalisasi",
-    icon: "MonitorSmartphone",
-    title: "Digitalisasi Layanan",
-    category: "Digitalisasi",
-    description:
-      "Membantu kelurahan dan UMKM memanfaatkan media digital: katalog produk, administrasi, dan publikasi kegiatan.",
-    span: "md:col-span-2",
-  },
-  {
-    id: "posyandu",
-    icon: "HeartPulse",
-    title: "Penyuluhan Kesehatan",
-    category: "Sosial",
-    description:
-      "Pendampingan posyandu, cek kesehatan gratis, dan edukasi gizi keluarga bersama kader PKK.",
-    span: "",
-  },
-  {
-    id: "safari",
+    id: "tirakatan",
     icon: "MoonStar",
-    title: "Safari Jumat & Khatmil Qur'an",
+    title: "Tirakatan Dk. Paesan Utara & Gembong",
     category: "Keagamaan",
-    description:
-      "Keliling masjid se-Kedungwuni Barat untuk khataman bersama dan penguatan ukhuwah warga.",
-    span: "",
+    schedule: "16 Agustus 2026",
+  },
+  {
+    id: "hut-ri",
+    icon: "Flag",
+    title: "HUT RI Dk. Paesan Utara & Gembong",
+    category: "Acara",
+    schedule: "17 Agustus 2026",
+  },
+  {
+    id: "karnaval",
+    icon: "Award",
+    title: "Karnaval",
+    category: "Acara",
+    schedule: "18 Agustus 2026",
+  },
+  {
+    id: "maulid",
+    icon: "Sparkles",
+    title: "Maulid Nabi Dk. Gembong",
+    category: "Keagamaan",
+    schedule: "21 Agustus 2026",
+  },
+  {
+    id: "pasar-jajan",
+    icon: "Coins",
+    title: "Pasar Jajan",
+    category: "Acara",
+    schedule: "Jadwal Menyusul",
   },
 ];

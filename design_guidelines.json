@@ -1,0 +1,184 @@
+{
+  "project_name": "KKN-PLP Terintegrasi Angkatan 65 Kelompok 55 Landing Page",
+  "theme": "dark_light_toggle",
+  "archetype": "Organic Earthy + Luxury Glassmorphism",
+  "colors": {
+    "primary": "#166534",
+    "primary_hover": "#14532D",
+    "accent": "#D4AF37",
+    "accent_hover": "#FBBF24",
+    "dark_hint": "#0F172A",
+    "light": {
+      "background": "#F8FAFC",
+      "surface": "#FFFFFF",
+      "text_primary": "#0F172A",
+      "text_secondary": "#475569",
+      "border": "#E2E8F0"
+    },
+    "dark": {
+      "background": "#020617",
+      "surface": "#0F172A",
+      "text_primary": "#F8FAFC",
+      "text_secondary": "#94A3B8",
+      "border": "#1E293B"
+    }
+  },
+  "typography": {
+    "headings": "Poppins",
+    "body": "Inter",
+    "scales": {
+      "h1": "text-5xl sm:text-6xl tracking-tighter font-bold",
+      "h2": "text-3xl sm:text-4xl tracking-tight font-semibold",
+      "h3": "text-xl sm:text-2xl font-medium tracking-tight",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm tracking-wide uppercase",
+      "nav": "text-sm font-medium tracking-wide"
+    },
+    "rules": "Never use Inter for headings. Keep Poppins for a modern, geometric, professional feel. Ensure line-height for headings is tight (leading-none or leading-tight) and tracking is tight."
+  },
+  "visual_enhancers": {
+    "glassmorphism": {
+      "light": "backdrop-blur-xl bg-white/75 border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.08)]",
+      "dark": "backdrop-blur-xl bg-slate-900/70 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+    },
+    "shadows": {
+      "soft": "shadow-xl shadow-green-900/5",
+      "glow": "shadow-[0_0_30px_-5px_rgba(212,175,55,0.4)]"
+    },
+    "border_radius": "rounded-2xl to rounded-3xl for cards to establish a premium Apple-like feel."
+  },
+  "motion": {
+    "smooth_scroll": "Lenis smooth scroll is MANDATORY. Apply to wrapper.",
+    "hero_reveal": "Masked line-by-line text stagger using Framer Motion. Text wrapped in overflow-hidden spans, animated from y: 100% to 0%.",
+    "hover_micro_interactions": "All cards should scale up slightly (scale-105) and lift on Y-axis (-translate-y-2) with a smooth transition (duration-300).",
+    "parallax": "Use Framer Motion's useScroll and useTransform for subtle background image parallax in Hero and About sections.",
+    "particles": "Subtle tsParticles background in Hero and Footer for an interactive, premium feel."
+  },
+  "layouts_and_grids": {
+    "bento_grid": "Use grid-cols-1 md:grid-cols-4 lg:grid-cols-6 with gap-6. Vary column spans (col-span-2, col-span-3) for visual interest.",
+    "spacing": "Use p-8 to p-12 for card padding. Use py-24 to py-32 for section spacing to give breathing room."
+  },
+  "sections_blueprint": [
+    {
+      "name": "Navbar",
+      "details": "Sticky top, glassmorphism surface (never fully transparent). Scroll progress bar (1px gold line) at the bottom edge. Includes Logo, Desktop Nav Links, Theme Toggle, and Mobile Hamburger Menu.",
+      "data_testid": "navbar-container"
+    },
+    {
+      "name": "Hero",
+      "details": "h-screen, relative. Background: Mosque/village image with dark green gradient overlay (bg-gradient-to-b from-green-950/70 via-green-900/60 to-slate-950/90). Content: Floating Logos (KKN + Univ), large kinetic text reveal 'KKN-PLP Terintegrasi Angkatan 65 / Kelompok 55', tagline 'Gerakan Eco Masjid melalui sedekah Sampah'. CTA Buttons: Primary (Gold, Jelajahi), Secondary (Glass, Profil). Animated scroll indicator at bottom.",
+      "data_testid": "hero-section"
+    },
+    {
+      "name": "Tentang KKN",
+      "details": "2 Columns. Left: Bold Manifesto-style text (Chapter 01). Right: Elegant image card with floating animated counters using React CountUp (Mahasiswa, Sekolah Mitra, Lokasi, Lama Kegiatan).",
+      "data_testid": "about-section"
+    },
+    {
+      "name": "Program Kerja",
+      "details": "Bento grid of glass cards. Categories: Pendidikan, Keagamaan, Lingkungan, Eco Masjid, Sedekah Sampah, Digitalisasi, Sosial. Each card has an icon, title, short desc, and category badge. Hover animations required.",
+      "data_testid": "programs-section"
+    },
+    {
+      "name": "Interactive Timeline",
+      "details": "Vertical line down the center (desktop) or left (mobile). Alternating Framer Motion staggered reveals for nodes: Observasi, Koordinasi, Perencanaan, Pelaksanaan, Evaluasi, Penutupan.",
+      "data_testid": "timeline-section"
+    },
+    {
+      "name": "Masonry Gallery",
+      "details": "Staggered image columns with framer-motion layout animations. Lightbox zoom interaction on click. High-quality imagery.",
+      "data_testid": "gallery-section"
+    },
+    {
+      "name": "Artikel Terbaru",
+      "details": "3-column grid. Modern cards with thumbnail, date, category badge, title, summary, and 'Baca Selengkapnya' button.",
+      "data_testid": "articles-section"
+    },
+    {
+      "name": "Lokasi & Map",
+      "details": "Wide Google Maps embed. Overlay a glassmorphism card over the map detailing the address (Kelurahan, Kecamatan, Kabupaten, Provinsi).",
+      "data_testid": "location-section"
+    },
+    {
+      "name": "Link Penting (Quick Access Hub)",
+      "details": "Bento Grid of 14 links. Use large Lucide icons. High priority links (Web LP2M, Dashboard, Modul) get col-span-2. Socials get col-span-1. Apply glassmorphism and hover glow.",
+      "data_testid": "links-hub-section"
+    },
+    {
+      "name": "Tim KKN",
+      "details": "Grid of portrait cards. Clean minimalist style. Grayscale to color on hover, sliding up social icons.",
+      "data_testid": "team-section"
+    },
+    {
+      "name": "FAQ",
+      "details": "Clean modern accordion using Shadcn. No borders, just bottom separators.",
+      "data_testid": "faq-section"
+    },
+    {
+      "name": "Testimoni & Sponsor",
+      "details": "Testimonial auto-slider (framer-motion or swiper). Below it, a fast-running logo marquee of Sponsors/Mitra in grayscale, color on hover.",
+      "data_testid": "testimonials-sponsors-section"
+    },
+    {
+      "name": "Footer & Kontak",
+      "details": "Huge 'Mari Berkolaborasi' heading. Premium dark footer layout. Address, Email, WhatsApp, Socials, Back to top button.",
+      "data_testid": "footer-section"
+    },
+    {
+      "name": "Floating Elements",
+      "details": "Floating WhatsApp button bottom right. Dark/Light mode toggle bottom left or in nav. Custom cursor glow effect on desktop.",
+      "data_testid": "floating-elements"
+    }
+  ],
+  "components_needed": [
+    "lucide-react",
+    "framer-motion",
+    "react-fast-marquee",
+    "react-countup",
+    "@studio-freight/react-lenis",
+    "clsx",
+    "tailwind-merge",
+    "Shadcn Primitives (Accordion, Card, Button, Badge, Dialog for Lightbox)"
+  ],
+  "image_urls": {
+    "hero_bg": {
+      "url": "https://images.pexels.com/photos/20657116/pexels-photo-20657116.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Mosque architecture, representing Eco Masjid"
+    },
+    "about_image": {
+      "url": "https://images.unsplash.com/photo-1636202339022-7d67f7447e3a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwxfHx0ZWFjaGluZyUyMGNsYXNzcm9vbSUyMHNtaWxpbmd8ZW58MHx8fHwxNzg1ODQ5MjU0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Teaching classroom / students"
+    },
+    "gallery": [
+      "https://images.pexels.com/photos/7565381/pexels-photo-7565381.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.pexels.com/photos/28881743/pexels-photo-28881743.jpeg",
+      "https://images.unsplash.com/photo-1558005530-a7958896ec60",
+      "https://images.unsplash.com/photo-1604187351574-c75ca79f5807?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODh8MHwxfHNlYXJjaHwxfHxnYXJiYWdlJTIwcmVjeWNsaW5nJTIwZWNvfGVufDB8fHx8MTc4NTg0OTI2M3ww&ixlib=rb-4.1.0&q=85"
+    ],
+    "team": [
+      "https://images.unsplash.com/photo-1544168190-79c17527004f",
+      "https://images.unsplash.com/photo-1619431667975-e93b820cde63",
+      "https://images.unsplash.com/photo-1548884481-dfb662aadde1",
+      "https://images.unsplash.com/photo-1647934729813-804092aef42d"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Read this guideline entirely before scaffolding the UI.",
+    "Implement the theme toggle using next-themes or standard React context updating the generic 'dark' class on the html element.",
+    "Use Framer Motion for ALL entrance animations. Stagger lists and grid items.",
+    "Create a realistic data payload for the Team, Articles, and Programs so the page looks complete.",
+    "Ensure perfect contrast ratios. Use text-shadow if placing text over the hero image.",
+    "Use `.js` or `.jsx` file extensions as the project is not set up with TypeScript based on instructions.",
+    "Integrate Lucide React for modern iconography throughout.",
+    "Implement the 'Quick Access Hub' accurately with the 14 requested links using a dense bento grid."
+  ],
+  "universal_guidelines_for_main_agent": [
+    "Avoid generic centered layouts. Use asymmetrical grids where possible to create visual tension.",
+    "Never apply global transitions like 'transition: all'. Target specific properties (e.g. transition-transform transition-colors).",
+    "All interactive elements and key sections MUST have a 'data-testid' attribute for testing.",
+    "Ensure 'prefers-reduced-motion' is respected for heavy animations.",
+    "Do not use complete transparent backgrounds in sticky headers; use glassmorphism with a border to separate from content.",
+    "Implement micro-animations on all hover states (buttons, cards, links).",
+    "Use generous padding (2x to 3x standard) to give components breathing room."
+  ]
+}

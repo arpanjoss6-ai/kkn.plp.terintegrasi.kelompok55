@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { EditorialMarquee } from "./components/EditorialMarquee";
 import { FloatingButtons } from "./components/FloatingButtons";
 import { Footer } from "./components/Footer";
@@ -7,6 +8,7 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import { Navbar } from "./components/Navbar";
 import { useLenis } from "./hooks/useLenis";
 import { useTheme } from "./hooks/useTheme";
+import ArticlePage from "./pages/ArticlePage";
 import { About } from "./sections/About";
 import { Articles } from "./sections/Articles";
 import { Contact } from "./sections/Contact";
@@ -31,27 +33,42 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <AnimatePresence>{!loaded && <LoadingScreen />}</AnimatePresence>
-      <Navbar theme={theme} onToggleTheme={toggleTheme} />
-      <main>
-        <Hero loaded={loaded} />
-        <EditorialMarquee />
-        <About />
-        <Programs />
-        <Timeline />
-        <Gallery />
-        <Articles />
-        <Location />
-        <QuickLinks />
-        <Team />
-        <Faq />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
-      <FloatingButtons />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-background text-foreground">
+        <AnimatePresence>{!loaded && <LoadingScreen />}</AnimatePresence>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar theme={theme} onToggleTheme={toggleTheme} />
+                <main>
+                  <Hero loaded={loaded} />
+                  <EditorialMarquee />
+                  <About />
+                  <Programs />
+                  <Timeline />
+                  <Gallery />
+                  <Articles />
+                  <Location />
+                  <QuickLinks />
+                  <Team />
+                  <Faq />
+                  <Testimonials />
+                  <Contact />
+                </main>
+                <Footer />
+                <FloatingButtons />
+              </>
+            }
+          />
+          <Route
+            path="/artikel/:id"
+            element={<ArticlePage theme={theme} onToggleTheme={toggleTheme} />}
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

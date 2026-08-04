@@ -18,6 +18,8 @@ Landing page modern, premium, elegan, responsif, dan interaktif untuk KKN Angkat
 Hero 100vh + logo + CTA; sticky glass navbar + scroll progress; Tentang + animated counters; Program Kerja (7 kategori); Timeline 6 fase; Galeri masonry + lightbox; Artikel; Google Maps + info lokasi; Quick Access Hub 14 link; Tim; FAQ; Testimoni slider; Logo mitra marquee; Kontak; Footer premium; Dark mode (ikut sistem); loading screen; floating WA + back-to-top; particles; cursor glow; PWA-ready; SEO meta.
 
 ## Yang Sudah Diimplementasikan (4 Agu 2026)
+- Halaman baca artikel `/artikel/:id`: isi tulisan utuh 6 artikel (paragraf, subjudul, kutipan tokoh, drop cap), tombol bagikan WhatsApp/Facebook/Salin Tautan, artikel terkait, halaman 404 khusus, judul tab dinamis, header khusus dengan tombol kembali + toggle tema
+- Routing react-router: `/` landing page, `/artikel/:id` halaman artikel; tombol "Baca Selengkapnya" mengarah ke halaman artikel
 - Seluruh 12 section lengkap dengan data placeholder realistis (Bahasa Indonesia).
 - Hero kinetik: masked line-by-line reveal, parallax background (foto masjid dusk), particles canvas, floating badges, scroll indicator.
 - Lenis momentum scroll + anchor navigation halus; scroll progress bar emas di navbar.
@@ -33,8 +35,8 @@ Hero 100vh + logo + CTA; sticky glass navbar + scroll progress; Tentang + animat
 
 ## Backlog Prioritas
 - P0: Ganti foto asli kegiatan & anggota (menunggu kiriman user); ganti URL placeholder (IG, WA, Form, dst) dengan link asli; nama anggota tim asli.
-- P1: Halaman detail artikel (route baca lengkap); logo KKN & universitas asli; nomor WA & email asli.
-- P2: Buku tamu digital; countdown menuju penutupan; integrasi backend untuk artikel/arsip; lighthouse audit 95+.
+- P1: Ganti foto asli kegiatan & anggota (menunggu kiriman user); ganti URL placeholder (IG, WA, Form, dst) dengan link asli; nama anggota tim asli; logo KKN & universitas asli
+- P2: Buku tamu digital; countdown menuju penutupan; halaman arsip semua artikel; integrasi backend untuk artikel (CMS); lighthouse audit 95+
 
 ## Catatan
 - Tidak ada autentikasi — test_credentials.md tidak diperlukan.

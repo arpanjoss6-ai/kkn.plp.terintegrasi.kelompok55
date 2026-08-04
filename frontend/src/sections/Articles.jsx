@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, CalendarDays, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import { SectionHeading } from "../components/SectionHeading";
 import { articles } from "../data/articles";
 
@@ -66,15 +67,14 @@ export const Articles = () => (
               <p className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
                 {a.summary}
               </p>
-              <a
-                href={a.url}
-                onClick={(e) => e.preventDefault()}
+              <Link
+                to={`/artikel/${a.id}`}
                 data-testid={`article-read-more-${a.id}`}
                 className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition-colors duration-300 hover:text-gold-600 dark:text-gold-400"
               >
                 Baca Selengkapnya
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+              </Link>
             </div>
           </motion.article>
         ))}

@@ -43,12 +43,11 @@ const menu = [
 
 export default function AdminLayout() {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const onLogout = async () => {
     await logout();
-    navigate("/admin/login", { replace: true });
+    window.location.href = "/";
   };
 
   const sidebar = (

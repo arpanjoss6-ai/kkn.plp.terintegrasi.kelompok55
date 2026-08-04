@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, CalendarDays, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SectionHeading } from "../components/SectionHeading";
-import { articles } from "../data/articles";
+import { useContent } from "../hooks/useContent";
 
-export const Articles = () => (
+export const Articles = () => {
+  const { articles } = useContent();
+  return (
   <section id="artikel" data-testid="articles-section" className="section-pad relative">
     <div className="mx-auto max-w-7xl px-5 sm:px-8">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -81,4 +83,5 @@ export const Articles = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

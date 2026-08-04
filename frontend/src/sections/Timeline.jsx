@@ -8,11 +8,13 @@ import {
   Users,
 } from "lucide-react";
 import { SectionHeading } from "../components/SectionHeading";
-import { timeline } from "../data/timeline";
+import { useContent } from "../hooks/useContent";
 
 const iconMap = { Search, Users, ClipboardList, Rocket, TrendingUp, Flag };
 
-export const Timeline = () => (
+export const Timeline = () => {
+  const { timeline } = useContent();
+  return (
   <section id="timeline" data-testid="timeline-section" className="section-pad relative">
     <div className="mx-auto max-w-7xl px-5 sm:px-8">
       <SectionHeading
@@ -67,4 +69,5 @@ export const Timeline = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

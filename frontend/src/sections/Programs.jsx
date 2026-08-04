@@ -14,7 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { SectionHeading } from "../components/SectionHeading";
-import { primerPrograms, sekunderPrograms } from "../data/programs";
+import { useContent } from "../hooks/useContent";
 
 const iconMap = {
   Sparkles,
@@ -119,7 +119,9 @@ const PrimerCard = ({ program, wide }) => {
   );
 };
 
-export const Programs = () => (
+export const Programs = () => {
+  const { primerPrograms, sekunderPrograms } = useContent();
+  return (
   <section
     id="program"
     data-testid="programs-section"
@@ -178,4 +180,5 @@ export const Programs = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

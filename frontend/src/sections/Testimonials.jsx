@@ -3,21 +3,27 @@ import Marquee from "react-fast-marquee";
 import { AnimatePresence, motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { SectionHeading } from "../components/SectionHeading";
-import { partners } from "../data/partners";
-import { testimonials } from "../data/testimonials";
+import { useContent } from "../hooks/useContent";
 
 export const Testimonials = () => {
+  const { testimonials, partners } = useContent();
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    setIndex(0);
+  }, [testimonials.length]);
+
+  useEffect(() => {
+    if (testimonials.length < 2) return undefined;
     const id = setInterval(
       () => setIndex((i) => (i + 1) % testimonials.length),
       5500
     );
     return () => clearInterval(id);
-  }, []);
+  }, [testimonials.length]);
 
-  const t = testimonials[index];
+  const t = testimonials[index] || testimonials[0];
+  if (!t) return null;
 
   return (
     <section
@@ -41,7 +47,7 @@ export const Testimonials = () => {
           >
             <AnimatePresence mode="wait">
               <motion.blockquote
-                key={t.id}
+                key={t.id || t.name}
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -18 }}
@@ -51,12 +57,14 @@ export const Testimonials = () => {
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <footer className="mt-8 flex flex-col items-center gap-3">
-                  <img
-                    src={t.photo}
-                    alt={`Foto ${t.name}`}
-                    loading="lazy"
-                    className="h-14 w-14 rounded-full object-cover ring-2 ring-gold-400/60"
-                  />
+                  {t.photo && (
+                    <img
+                      src={t.photo}
+                      alt={`Foto ${t.name}`}
+                      loading="lazy"
+                      className="h-14 w-14 rounded-full object-cover ring-2 ring-gold-400/60"
+                    />
+                  )}
                   <div>
                     <p className="font-display text-sm font-bold text-foreground">
                       {t.name}
@@ -70,20 +78,22 @@ export const Testimonials = () => {
             </AnimatePresence>
           </div>
 
-          <div className="mt-7 flex justify-center gap-2.5">
-            {testimonials.map((item, i) => (
-              <button
-                key={item.id}
-                type="button"
-                data-testid={`testimonial-dot-${item.id}`}
-                onClick={() => setIndex(i)}
-                aria-label={`Testimoni ${i + 1}`}
-                className={`h-2.5 rounded-full transition-[width,background-color] duration-300 ${
-                  i === index ? "w-8 bg-gold-400" : "w-2.5 bg-foreground/20 hover:bg-foreground/35"
-                }`}
-              />
-            ))}
-          </div>
+          {testimonials.length > 1 && (
+            <div className="mt-7 flex justify-center gap-2.5">
+              {testimonials.map((item, i) => (
+                <button
+                  key={item.id || i}
+                  type="button"
+                  data-testid={`testimonial-dot-${i}`}
+                  onClick={() => setIndex(i)}
+                  aria-label={`Testimoni ${i + 1}`}
+                  className={`h-2.5 rounded-full transition-[width,background-color] duration-300 ${
+                    i === index ? "w-8 bg-gold-400" : "w-2.5 bg-foreground/20 hover:bg-foreground/35"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="mt-20 border-t border-border pt-12">
@@ -91,15 +101,25 @@ export const Testimonials = () => {
             Didukung oleh Mitra & Sponsor
           </p>
           <Marquee speed={45} gradient={false} pauseOnHover className="relative" data-testid="partners-marquee">
-            {partners.map((p) => (
-              <span
-                key={p}
-                className="mx-7 inline-flex items-center gap-3 rounded-full bg-card px-6 py-3 font-display text-sm font-semibold text-muted-foreground ring-1 ring-border grayscale transition-all duration-300 hover:text-brand-700 hover:grayscale-0 dark:hover:text-gold-400"
-              >
-                <span className="h-2 w-2 rotate-45 rounded-[2px] bg-gold-400" />
-                {p}
-              </span>
-            ))}
+            {partners.map((p, i) => {
+              const chip = (
+                <span className="mx-7 inline-flex items-center gap-3 rounded-full bg-card px-6 py-3 font-display text-sm font-semibold text-muted-foreground ring-1 ring-border grayscale transition-all duration-300 hover:text-brand-700 hover:grayscale-0 dark:hover:text-gold-400">
+                  {p.logo ? (
+                    <img src={p.logo} alt="" className="h-5 w-5 rounded-full object-contain" />
+                  ) : (
+                    <span className="h-2 w-2 rotate-45 rounded-[2px] bg-gold-400" />
+                  )}
+                  {p.name}
+                </span>
+              );
+              return p.url ? (
+                <a key={p.id || i} href={p.url} target="_blank" rel="noopener noreferrer">
+                  {chip}
+                </a>
+              ) : (
+                <span key={p.id || i}>{chip}</span>
+              );
+            })}
           </Marquee>
         </div>
       </div>

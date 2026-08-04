@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { Instagram, Mail } from "lucide-react";
 import { SectionHeading } from "../components/SectionHeading";
-import { team } from "../data/team";
+import { useContent } from "../hooks/useContent";
 
-export const Team = () => (
+export const Team = () => {
+  const { team } = useContent();
+  return (
   <section
     id="tim"
     data-testid="team-section"
@@ -38,7 +40,7 @@ export const Team = () => (
               />
               <div className="absolute inset-x-0 bottom-0 flex translate-y-full justify-center gap-2.5 bg-gradient-to-t from-brand-950/90 to-transparent p-4 pt-10 transition-transform duration-500 group-hover:translate-y-0">
                 <a
-                  href={m.socials.instagram}
+                  href={m.socials?.instagram || m.instagram || "#"}
                   onClick={(e) => e.preventDefault()}
                   data-testid={`team-social-instagram-${m.id}`}
                   aria-label={`Instagram ${m.name}`}
@@ -47,7 +49,7 @@ export const Team = () => (
                   <Instagram className="h-4 w-4" />
                 </a>
                 <a
-                  href={`mailto:${m.name}@kkn55.id`}
+                  href={m.email ? `mailto:${m.email}` : "#"}
                   onClick={(e) => e.preventDefault()}
                   data-testid={`team-social-email-${m.id}`}
                   aria-label={`Email ${m.name}`}
@@ -70,4 +72,5 @@ export const Team = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

@@ -1,0 +1,39 @@
+import { createContext, useContext, useEffect, useState } from "react";
+import { api, setUnauthorizedHandler } from "./api";
+
+const AuthContext = createContext(null);
+
+export const useAuth = () => useContext(AuthContext);
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null); // null = memeriksa, false = belum login
+
+  useEffect(() => {
+    setUnauthorizedHandler(() => setUser(false));
+    api
+      .get("/api/auth/me")
+      .then(setUser)
+      .catch(() => setUser(false));
+  }, []);
+
+  const login = async (username, password) => {
+    const data = await api.post("/api/auth/login", { username, password });
+    setUser(data);
+    return data;
+  };
+
+  const logout = async () => {
+    try {
+      await api.post("/api/auth/logout");
+    } catch {
+      /* abaikan */
+    }
+    setUser(false);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

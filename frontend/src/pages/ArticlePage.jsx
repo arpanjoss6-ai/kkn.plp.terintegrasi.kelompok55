@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { LogoMark } from "../components/LogoMark";
-import { articles } from "../data/articles";
+import { useContent } from "../hooks/useContent";
 import { lenisStore } from "../hooks/useLenis";
 
 const ArticleHeader = ({ theme, onToggleTheme }) => (
@@ -100,7 +100,8 @@ const ArticleBody = ({ article }) => (
 
 export default function ArticlePage({ theme, onToggleTheme }) {
   const { id } = useParams();
-  const article = articles.find((a) => a.id === Number(id));
+  const { articles } = useContent();
+  const article = articles.find((a) => String(a.id) === String(id));
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {

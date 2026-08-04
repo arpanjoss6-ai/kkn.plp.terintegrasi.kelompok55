@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { Images } from "lucide-react";
 import { Lightbox } from "../components/Lightbox";
 import { SectionHeading } from "../components/SectionHeading";
-import { gallery } from "../data/gallery";
+import { useContent } from "../hooks/useContent";
 
 export const Gallery = () => {
+  const { gallery } = useContent();
   const [selected, setSelected] = useState(null);
 
   return (

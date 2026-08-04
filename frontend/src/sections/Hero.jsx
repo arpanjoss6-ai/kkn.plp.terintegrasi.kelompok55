@@ -2,8 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, GraduationCap, Leaf, MapPin, Users } from "lucide-react";
 import { Particles } from "../components/Particles";
-import { images } from "../data/images";
-import { siteConfig } from "../data/siteConfig";
+import { useContent } from "../hooks/useContent";
 import { scrollToId } from "../hooks/useLenis";
 
 const lineVariants = {
@@ -20,6 +19,7 @@ const fadeUp = (delay) => ({
 });
 
 export const Hero = ({ loaded }) => {
+  const { hero, site } = useContent();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -30,10 +30,10 @@ export const Hero = ({ loaded }) => {
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   const lines = [
-    { text: "KKN-PLP Terintegrasi", cls: "text-white" },
-    { text: "Angkatan 65", cls: "text-white" },
-    { text: "Kelompok 55", cls: "text-gradient-gold animate-gradient-x" },
-  ];
+    { text: hero.line1, cls: "text-white" },
+    { text: hero.line2, cls: "text-white" },
+    { text: hero.line3, cls: "text-gradient-gold animate-gradient-x" },
+  ].filter((l) => l.text);
 
   return (
     <section
@@ -44,8 +44,8 @@ export const Hero = ({ loaded }) => {
     >
       <motion.div className="absolute inset-0" style={{ y: bgY, scale: bgScale }}>
         <img
-          src={images.hero}
-          alt="Suasana masjid dan kegiatan masyarakat"
+          src={hero.background}
+          alt="Latar kegiatan masyarakat"
           className="h-full w-full object-cover"
         />
       </motion.div>
@@ -66,19 +66,35 @@ export const Hero = ({ loaded }) => {
           className="mb-9 flex flex-wrap items-center gap-3"
         >
           <div className="flex animate-float items-center gap-2.5 rounded-full bg-white/10 px-4 py-2 ring-1 ring-white/20 backdrop-blur-xl">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-900">
-              <Leaf className="h-3.5 w-3.5 text-gold-400" />
-            </span>
+            {hero.logoKkn ? (
+              <img
+                src={hero.logoKkn}
+                alt="Logo KKN"
+                className="h-7 w-7 rounded-full object-cover"
+              />
+            ) : (
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-900">
+                <Leaf className="h-3.5 w-3.5 text-gold-400" />
+              </span>
+            )}
             <span className="text-xs font-semibold tracking-wide text-white">
-              {siteConfig.shortName} • {siteConfig.group}
+              KKN 55 • {site.group}
             </span>
           </div>
           <div className="flex animate-float-slow items-center gap-2.5 rounded-full bg-white/10 px-4 py-2 ring-1 ring-white/20 backdrop-blur-xl">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600">
-              <GraduationCap className="h-3.5 w-3.5 text-slate-900" />
-            </span>
+            {hero.logoUniv ? (
+              <img
+                src={hero.logoUniv}
+                alt="Logo Universitas"
+                className="h-7 w-7 rounded-full object-cover"
+              />
+            ) : (
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600">
+                <GraduationCap className="h-3.5 w-3.5 text-slate-900" />
+              </span>
+            )}
             <span className="text-xs font-semibold tracking-wide text-white">
-              {siteConfig.universityShort}
+              {site.universityShort}
             </span>
           </div>
         </motion.div>
@@ -93,7 +109,7 @@ export const Hero = ({ loaded }) => {
             data-testid="hero-village-chip"
             className="text-xs font-semibold tracking-[0.18em] text-gold-200"
           >
-            {siteConfig.village.toUpperCase()}
+            {(hero.village || "").toUpperCase()}
           </span>
         </motion.div>
 
@@ -122,7 +138,7 @@ export const Hero = ({ loaded }) => {
           animate={loaded ? { opacity: 1, y: 0 } : {}}
           className="mt-6 text-sm font-semibold tracking-[0.35em] text-white/85 sm:text-base"
         >
-          {siteConfig.subtitle}
+          {hero.subtitle}
         </motion.p>
 
         <motion.p
@@ -131,8 +147,7 @@ export const Hero = ({ loaded }) => {
           animate={loaded ? { opacity: 1, y: 0 } : {}}
           className="mt-4 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
         >
-          &ldquo;{siteConfig.tagline}&rdquo; — mengabdi untuk masyarakat{" "}
-          {siteConfig.village}, {siteConfig.kabupaten}.
+          &ldquo;{hero.tagline}&rdquo; — mengabdi untuk masyarakat {site.village}.
         </motion.p>
 
         <motion.div
@@ -143,20 +158,20 @@ export const Hero = ({ loaded }) => {
           <button
             type="button"
             data-testid="hero-cta-explore-button"
-            onClick={() => scrollToId("#tentang")}
+            onClick={() => scrollToId(hero.ctaPrimaryTarget || "#tentang")}
             className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-gold-400 to-gold-500 px-8 py-4 font-display text-sm font-bold text-slate-900 shadow-[0_10px_40px_-8px_rgba(212,175,55,0.6)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_16px_50px_-8px_rgba(212,175,55,0.8)]"
           >
-            Jelajahi Website
+            {hero.ctaPrimaryLabel}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
           </button>
           <button
             type="button"
             data-testid="hero-cta-profile-button"
-            onClick={() => scrollToId("#tim")}
+            onClick={() => scrollToId(hero.ctaSecondaryTarget || "#tim")}
             className="group inline-flex items-center gap-2.5 rounded-full bg-white/10 px-8 py-4 font-display text-sm font-bold text-white ring-1 ring-white/25 backdrop-blur-xl transition-[transform,background-color] duration-300 hover:-translate-y-1 hover:bg-white/20"
           >
             <Users className="h-4 w-4 text-gold-300" />
-            Profil Kelompok
+            {hero.ctaSecondaryLabel}
           </button>
         </motion.div>
       </motion.div>
@@ -164,7 +179,7 @@ export const Hero = ({ loaded }) => {
       <motion.button
         type="button"
         data-testid="hero-scroll-indicator"
-        onClick={() => scrollToId("#tentang")}
+        onClick={() => scrollToId(hero.ctaPrimaryTarget || "#tentang")}
         aria-label="Gulir ke bawah"
         initial={{ opacity: 0 }}
         animate={loaded ? { opacity: 1 } : {}}

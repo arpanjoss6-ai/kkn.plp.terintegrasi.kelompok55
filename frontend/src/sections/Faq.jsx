@@ -6,9 +6,11 @@ import {
   AccordionTrigger,
 } from "../components/ui/accordion";
 import { SectionHeading } from "../components/SectionHeading";
-import { faqs } from "../data/faq";
+import { useContent } from "../hooks/useContent";
 
-export const Faq = () => (
+export const Faq = () => {
+  const { faqs } = useContent();
+  return (
   <section id="faq" data-testid="faq-section" className="section-pad relative">
     <div className="mx-auto max-w-3xl px-5 sm:px-8">
       <SectionHeading
@@ -45,4 +47,5 @@ export const Faq = () => (
       </motion.div>
     </div>
   </section>
-);
+  );
+};

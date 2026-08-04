@@ -9,16 +9,9 @@ import {
   Youtube,
 } from "lucide-react";
 import { siteConfig } from "../data/siteConfig";
+import { useContent } from "../hooks/useContent";
 import { scrollToId } from "../hooks/useLenis";
 import { LogoMark } from "./LogoMark";
-
-const socials = [
-  { label: "Instagram", icon: Instagram, url: siteConfig.socials.instagram, testid: "footer-social-instagram" },
-  { label: "YouTube", icon: Youtube, url: siteConfig.socials.youtube, testid: "footer-social-youtube" },
-  { label: "TikTok", icon: Music2, url: siteConfig.socials.tiktok, testid: "footer-social-tiktok" },
-  { label: "Facebook", icon: Facebook, url: siteConfig.socials.facebook, testid: "footer-social-facebook" },
-  { label: "WhatsApp", icon: MessageCircle, url: siteConfig.socials.whatsapp, testid: "footer-social-whatsapp" },
-];
 
 const programLinks = [
   { label: "Eco Masjid", href: "#program" },
@@ -28,6 +21,16 @@ const programLinks = [
 ];
 
 export const Footer = () => {
+  const { contact, site } = useContent();
+
+  const socials = [
+    { label: "Instagram", icon: Instagram, url: contact.socials?.instagram, testid: "footer-social-instagram" },
+    { label: "YouTube", icon: Youtube, url: contact.socials?.youtube, testid: "footer-social-youtube" },
+    { label: "TikTok", icon: Music2, url: contact.socials?.tiktok, testid: "footer-social-tiktok" },
+    { label: "Facebook", icon: Facebook, url: contact.socials?.facebook, testid: "footer-social-facebook" },
+    { label: "WhatsApp", icon: MessageCircle, url: contact.socials?.whatsapp, testid: "footer-social-whatsapp" },
+  ];
+
   const go = (e, href) => {
     e.preventDefault();
     scrollToId(href);
@@ -54,21 +57,21 @@ export const Footer = () => {
           <span className="text-gradient-gold animate-gradient-x">
             Berkolaborasi
           </span>{" "}
-          untuk Kedungwuni Barat.
+          untuk {site.village}.
         </motion.h2>
 
         <div className="mt-16 grid gap-12 border-t border-white/10 pt-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <LogoMark light />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
-              {siteConfig.tagline} Program pengabdian dan pendidikan terpadu{" "}
-              {siteConfig.university}.
+              {site.tagline} Program pengabdian dan pendidikan terpadu{" "}
+              {site.university}.
             </p>
             <div className="mt-6 flex gap-2.5">
               {socials.map((s) => (
                 <a
                   key={s.label}
-                  href={s.url}
+                  href={s.url || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid={s.testid}
@@ -127,29 +130,26 @@ export const Footer = () => {
             <ul className="mt-5 space-y-4 text-sm text-white/60">
               <li className="flex gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
-                <span>
-                  {siteConfig.address}, {siteConfig.kelurahan},{" "}
-                  {siteConfig.kabupaten}
-                </span>
+                <span>{contact.address}</span>
               </li>
               <li className="flex gap-3">
                 <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
                 <a
-                  href={siteConfig.whatsappUrl}
+                  href={contact.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors duration-200 hover:text-gold-300"
                 >
-                  {siteConfig.whatsappDisplay}
+                  {contact.whatsappDisplay}
                 </a>
               </li>
               <li className="flex gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
                 <a
-                  href={`mailto:${siteConfig.email}`}
+                  href={`mailto:${contact.email}`}
                   className="transition-colors duration-200 hover:text-gold-300"
                 >
-                  {siteConfig.email}
+                  {contact.email}
                 </a>
               </li>
             </ul>
@@ -158,12 +158,10 @@ export const Footer = () => {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
           <p className="text-xs text-white/45">
-            © 2026 {siteConfig.name} {siteConfig.group} • {siteConfig.village}.
-            All rights reserved.
+            © 2026 {site.name} {site.group} • {site.village}. All rights
+            reserved.
           </p>
-          <p className="text-xs text-white/45">
-            {siteConfig.university} • LP2M
-          </p>
+          <p className="text-xs text-white/45">{site.university} • LP2M</p>
         </div>
       </div>
     </footer>

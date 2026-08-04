@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp, MessageCircle } from "lucide-react";
-import { siteConfig } from "../data/siteConfig";
+import { useContent } from "../hooks/useContent";
 import { scrollToId } from "../hooks/useLenis";
 
 export const FloatingButtons = () => {
+  const { contact } = useContent();
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export const FloatingButtons = () => {
       </AnimatePresence>
       <motion.a
         data-testid="floating-whatsapp-button"
-        href={siteConfig.whatsappUrl}
+        href={contact.whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat WhatsApp KKN 55"

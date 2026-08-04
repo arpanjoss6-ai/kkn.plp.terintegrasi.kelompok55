@@ -2,36 +2,30 @@ import { useRef } from "react";
 import CountUp from "react-countup";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
+  Award,
   BadgeCheck,
   CalendarDays,
+  Flag,
   MapPin,
   School,
   Users,
 } from "lucide-react";
 import { SectionHeading } from "../components/SectionHeading";
-import { images } from "../data/images";
-import { siteConfig } from "../data/siteConfig";
-import { stats } from "../data/stats";
+import { useContent } from "../hooks/useContent";
 
-const iconMap = { Users, School, MapPin, CalendarDays };
-const highlights = [
-  "Eco Masjid",
-  "BPJS Ketenagakerjaan",
-  "Bimbel Cendekia",
-  "TPQ Al-Maula",
-];
+const iconMap = { Users, School, MapPin, CalendarDays, Flag, Award };
 
 const StatCard = ({ stat, started }) => {
-  const Icon = iconMap[stat.icon];
+  const Icon = iconMap[stat.icon] || Users;
   return (
     <div
-      data-testid={`about-stat-${stat.id}`}
+      data-testid={`about-stat-${stat.label}`}
       className="glass rounded-2xl px-4 py-5 text-center shadow-xl shadow-brand-950/5"
     >
       <Icon className="mx-auto mb-2 h-5 w-5 text-brand-700 dark:text-gold-400" />
       <p className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
         {started ? (
-          <CountUp end={stat.value} duration={2} suffix={stat.suffix} />
+          <CountUp end={Number(stat.value) || 0} duration={2} suffix={stat.suffix || ""} />
         ) : (
           0
         )}
@@ -44,6 +38,7 @@ const StatCard = ({ stat, started }) => {
 };
 
 export const About = () => {
+  const { about } = useContent();
   const statsRef = useRef(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
   const imgRef = useRef(null);
@@ -59,8 +54,8 @@ export const About = () => {
         <div>
           <SectionHeading
             number="01"
-            eyebrow="Tentang Kami"
-            title="Mengabdi dengan Hati, Mengajar dengan Ilmu"
+            eyebrow={about.eyebrow || "Tentang Kami"}
+            title={about.title}
           />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,24 +64,9 @@ export const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground"
           >
-            <p>
-              <span className="font-semibold text-foreground">
-                KKN-PLP Terintegrasi Angkatan 65 {siteConfig.group}
-              </span>{" "}
-              adalah program pengabdian masyarakat {siteConfig.university} yang
-              digabungkan dengan Praktik Lapangan Persekolahan — mahasiswa
-              mengabdi di tengah warga sekaligus mengajar di sekolah-sekolah
-              mitra.
-            </p>
-            <p>
-              Berpusat di {siteConfig.village}, kami mengusung gerakan{" "}
-              <span className="font-semibold text-brand-700 dark:text-gold-400">
-                Eco Masjid melalui Sedekah Sampah
-              </span>
-              : menjadikan rumah ibadah sebagai pusat peradaban hijau, tempat
-              jamaah bersedekah dengan sampah terpilah demi lingkungan yang
-              bersih dan berkah.
-            </p>
+            {(about.paragraphs || []).map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </motion.div>
           <motion.ul
             initial={{ opacity: 0, y: 20 }}
@@ -95,7 +75,7 @@ export const About = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-7 flex flex-wrap gap-2.5"
           >
-            {highlights.map((h) => (
+            {(about.highlights || []).map((h) => (
               <li
                 key={h}
                 className="inline-flex items-center gap-1.5 rounded-full bg-brand-700/10 px-4 py-2 text-xs font-semibold text-brand-800 ring-1 ring-brand-700/15 dark:bg-gold-400/10 dark:text-gold-300 dark:ring-gold-400/20"
@@ -117,8 +97,8 @@ export const About = () => {
             className="relative overflow-hidden rounded-[2rem] shadow-2xl shadow-brand-950/20 ring-1 ring-border"
           >
             <motion.img
-              src={images.about}
-              alt="Kegiatan mengajar mahasiswa KKN 55"
+              src={about.photo}
+              alt="Kegiatan mahasiswa KKN 55"
               loading="lazy"
               style={{ y: imgY, scale: 1.15 }}
               className="aspect-[4/3] w-full object-cover"
@@ -126,9 +106,8 @@ export const About = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-brand-950/50 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 rounded-2xl bg-white/10 px-4 py-2.5 ring-1 ring-white/25 backdrop-blur-xl">
               <p className="font-display text-xs font-bold tracking-wide text-white">
-                {siteConfig.period}
+                {about.period}
               </p>
-              <p className="text-[11px] text-white/70">{siteConfig.village}</p>
             </div>
           </motion.div>
 
@@ -136,8 +115,8 @@ export const About = () => {
             ref={statsRef}
             className="relative z-10 mx-auto -mt-14 grid max-w-md grid-cols-2 gap-4 px-2"
           >
-            {stats.map((s) => (
-              <StatCard key={s.id} stat={s} started={statsInView} />
+            {(about.stats || []).map((s, i) => (
+              <StatCard key={s.label || i} stat={s} started={statsInView} />
             ))}
           </div>
         </div>

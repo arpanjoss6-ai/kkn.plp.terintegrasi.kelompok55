@@ -17,6 +17,7 @@ from bson.errors import InvalidId
 from fastapi import (APIRouter, Depends, FastAPI, File, HTTPException, Request,
                      Response, UploadFile)
 from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo import UpdateOne
 from starlette.middleware.cors import CORSMiddleware
 
 ROOT_DIR = Path(__file__).parent
@@ -120,8 +121,10 @@ async def log_activity(user: dict, action: str, collection: str, label: str):
 
 
 # ---------------- Object storage ----------------
-STORAGE_URL = "https://integrations.emergentagent.com/objstore/api/v1/storage"
-APP_NAME = "kkn55"
+STORAGE_URL = os.environ.get(
+    "STORAGE_URL", "https://integrations.emergentagent.com/objstore/api/v1/storage"
+)
+APP_NAME = os.environ.get("APP_NAME", "kkn55")
 storage_key = None
 
 
@@ -288,8 +291,12 @@ async def create_content(name: str, request: Request, user=Depends(get_current_u
 async def reorder_content(name: str, request: Request, user=Depends(get_current_user)):
     coll = get_collection(name)
     body = await request.json()
-    for i, oid in enumerate(body.get("order", [])):
-        await coll.update_one({"_id": parse_oid(oid)}, {"$set": {"order": i}})
+    operations = [
+        UpdateOne({"_id": parse_oid(oid)}, {"$set": {"order": i}})
+        for i, oid in enumerate(body.get("order", []))
+    ]
+    if operations:
+        await coll.bulk_write(operations)
     await log_activity(user, "urutkan", name, "")
     return {"ok": True}
 

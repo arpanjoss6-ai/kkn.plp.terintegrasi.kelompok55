@@ -586,10 +586,16 @@ async def startup():
 
 app.include_router(api_router)
 
+_cors_env = os.environ.get("CORS_ORIGINS", "")
+if _cors_env and _cors_env != "*":
+    _origins = [o.strip() for o in _cors_env.split(",") if o.strip()]
+else:
+    _origins = [os.environ.get("FRONTEND_URL", "http://localhost:3000")]
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=[os.environ.get("FRONTEND_URL", "http://localhost:3000")],
+    allow_origins=_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )

@@ -1,4 +1,4 @@
-const API = process.env.REACT_APP_BACKEND_URL;
+const API = https://kknplpterintegrasikelompok55-production.up.railway.app/api/;
 
 let onUnauthorized = null;
 export const setUnauthorizedHandler = (fn) => {

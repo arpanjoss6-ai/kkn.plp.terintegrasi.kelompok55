@@ -1,4 +1,4 @@
-const API = https://kknplpterintegrasikelompok55-production.up.railway.app/api/;
+const API = https://kknplpterintegrasikelompok55-production.up.railway.app;
 
 let onUnauthorized = null;
 export const setUnauthorizedHandler = (fn) => {

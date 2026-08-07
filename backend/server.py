@@ -181,6 +181,13 @@ def parse_oid(item_id: str) -> ObjectId:
 async def root():
     return {"message": "KKN 55 CMS API"}
 
+@api_router.get("/debug/cors")
+async def debug_cors():
+    return {
+        "cors_origins": _origins,
+        "frontend_url": os.environ.get("FRONTEND_URL"),
+        "cors_env": os.environ.get("CORS_ORIGINS"),
+    }
 
 # ---------------- Auth ----------------
 @api_router.post("/auth/login")

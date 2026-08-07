@@ -405,25 +405,41 @@ async def track_visit():
 @api_router.post("/upload")
 async def upload(file: UploadFile = File(...), user=Depends(get_current_user)):
     content_type = file.content_type or "application/octet-stream"
+
     if not content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="Hanya file gambar yang diperbolehkan")
+        raise HTTPException(
+            status_code=400,
+            detail="Hanya file gambar yang diperbolehkan"
+        )
+
     data = await file.read()
+
     if len(data) > 8 * 1024 * 1024:
-        raise HTTPException(status_code=400, detail="Ukuran file maksimal 8 MB")
-    ext = file.filename.rsplit(".", 1)[-1].lower() if "." in file.filename else "png"
-    path = f"{APP_NAME}/uploads/{uuid.uuid4().hex}.{ext}"
-    result = put_object(path, data, content_type)
+        raise HTTPException(
+            status_code=400,
+            detail="Ukuran file maksimal 8 MB"
+        )
+
+    result = cloudinary.uploader.upload(
+        data,
+        folder="kkn55",
+        resource_type="image"
+    )
+
     await db.files.insert_one({
-        "storage_path": result["path"],
         "original_filename": file.filename,
         "content_type": content_type,
-        "size": result.get("size", len(data)),
-        "is_deleted": False,
+        "size": len(data),
+        "cloudinary_url": result["secure_url"],
+        "public_id": result["public_id"],
         "created_at": datetime.now(timezone.utc).isoformat(),
     })
-    await log_activity(user, "upload", "file", file.filename)
-    return {"path": result["path"], "url": f"/api/files/{result['path']}"}
 
+    await log_activity(user, "upload", "file", file.filename)
+
+    return {
+        "url": result["secure_url"]
+    }
 
 @api_router.get("/files/{path:path}")
 async def serve_file(path: str):

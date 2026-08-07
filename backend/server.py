@@ -615,12 +615,6 @@ async def startup():
     await db.activity.create_index("ts")
     await seed_admin()
     await seed_content()
-    try:
-        init_storage()
-        logger.info("Object storage initialized")
-    except Exception as e:
-        logger.error(f"Storage init failed: {e}")
-
 
 app.include_router(api_router)
 

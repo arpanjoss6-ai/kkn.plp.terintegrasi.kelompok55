@@ -12,6 +12,8 @@ from pathlib import Path
 import bcrypt
 import jwt
 import requests
+import cloudinary
+import cloudinary.uploader
 from bson import ObjectId
 from bson.errors import InvalidId
 from fastapi import (APIRouter, Depends, FastAPI, File, HTTPException, Request,
@@ -26,6 +28,12 @@ load_dotenv(ROOT_DIR / ".env")
 mongo_url = os.environ["MONGO_URL"]
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ["DB_NAME"]]
+cloudinary.config(
+    cloud_name=os.environ["CLOUDINARY_CLOUD_NAME"],
+    api_key=os.environ["CLOUDINARY_API_KEY"],
+    api_secret=os.environ["CLOUDINARY_API_SECRET"],
+    secure=True,
+)
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")

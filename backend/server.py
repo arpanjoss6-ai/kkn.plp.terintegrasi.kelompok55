@@ -81,9 +81,9 @@ def create_refresh_token(user_id: str) -> str:
 
 def set_auth_cookies(response: Response, access: str, refresh: str):
     response.set_cookie("access_token", access, httponly=True, secure=True,
-                        samesite="lax", max_age=ACCESS_MINUTES * 60, path="/")
+                        samesite="none", max_age=ACCESS_MINUTES * 60, path="/")
     response.set_cookie("refresh_token", refresh, httponly=True, secure=True,
-                        samesite="lax", max_age=REFRESH_DAYS * 86400, path="/")
+                        samesite="none", max_age=REFRESH_DAYS * 86400, path="/")
 
 
 async def get_current_user(request: Request) -> dict:

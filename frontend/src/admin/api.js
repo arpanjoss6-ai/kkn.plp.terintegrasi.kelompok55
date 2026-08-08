@@ -46,24 +46,34 @@ export const uploadImage = (file, onProgress) =>
     const xhr = new XMLHttpRequest();
     xhr.open("POST", `${API}/api/upload`);
     xhr.withCredentials = true;
+
     xhr.upload.onprogress = (e) => {
       if (e.lengthComputable && onProgress) {
         onProgress(Math.round((e.loaded / e.total) * 100));
       }
     };
+
     xhr.onload = () => {
       try {
         const d = JSON.parse(xhr.responseText);
+
         if (xhr.status >= 200 && xhr.status < 300) {
-          resolve({ ...d, url: `${API}${d.url}` });
+          resolve(d);
         } else {
-          reject(new Error(typeof d.detail === "string" ? d.detail : "Upload gagal"));
+          reject(
+            new Error(
+              typeof d.detail === "string" ? d.detail : "Upload gagal"
+            )
+          );
         }
       } catch (e) {
         reject(e);
       }
     };
-    xhr.onerror = () => reject(new Error("Upload gagal, periksa koneksi"));
+
+    xhr.onerror = () =>
+      reject(new Error("Upload gagal, periksa koneksi"));
+
     const fd = new FormData();
     fd.append("file", file);
     xhr.send(fd);

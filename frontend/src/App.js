@@ -35,13 +35,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!sessionStorage.getItem("kkn55_visited")) {
-      fetch(`${process.env."https://kknplpterintegrasikelompok55-production.up.railway.app/api/track-visit`, {
-        method: "POST",
-      }).catch(() => {});
-      sessionStorage.setItem("kkn55_visited", "1");
-    }
-  }, []);
+  if (!sessionStorage.getItem("kkn55_visited")) {
+    fetch("https://kknplpterintegrasikelompok55-production.up.railway.app/api/track-visit", {
+      method: "POST",
+    }).catch(() => {});
+    sessionStorage.setItem("kkn55_visited", "1");
+  }
+}, []);
 
   return (
     <BrowserRouter>

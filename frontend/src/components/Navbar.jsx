@@ -46,32 +46,23 @@ export const Navbar = ({ theme, onToggleTheme }) => {
         onClick={(e) => go(e, "#beranda")}
         data-testid="navbar-logo-link"
         aria-label="Beranda KKN 55"
-        className="flex items-center"
+        className="flex items-center gap-3"
       >
         <img
-          src="/logo-kkn65.png"
+          src="/logo-kkn65-transparan.png"
           alt="Logo KKN PLP Angkatan 65 Kelompok 55"
-          className="h-12 w-12 object-contain"
+          className="h-12 w-12 object-contain drop-shadow-lg"
         />
 
-        <div className="ml-3 hidden sm:block">
-          <div
-            className={`text-base font-bold ${
-              scrolled || open ? "text-foreground" : "text-white"
-            }`}
-          >
-            KKN 55 • Kelompok 55
-          </div>
-
-          <div
-            className={`text-xs ${
-              scrolled || open ? "text-muted-foreground" : "text-white/70"
-            }`}
-          >
-            UIN Gusdur Pekalongan
-          </div>
-        </div>
-      </a>
+        <div className="leading-tight">
+    <div className="font-bold text-white">
+      KKN 65 • Kelompok 55
+    </div>
+    <div className="text-sm text-white/60">
+      UIN Gusdur Pekalongan
+    </div>
+  </div>
+</a>
 
       {/* MENU DESKTOP */}
       <ul className="hidden items-center gap-7 lg:flex">

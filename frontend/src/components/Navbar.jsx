@@ -3,7 +3,6 @@ import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { siteConfig } from "../data/siteConfig";
 import { scrollToId } from "../hooks/useLenis";
-import { LogoMark } from "./LogoMark";
 
 export const Navbar = ({ theme, onToggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -42,8 +41,11 @@ export const Navbar = ({ theme, onToggleTheme }) => {
           data-testid="navbar-logo-link"
           aria-label="Beranda KKN 55"
         >
-          <LogoMark light={!scrolled && !open} />
-        </a>
+          <img
+    src="/logo-kkn65.png"
+    alt="Logo KKN PLP Angkatan 65"
+    className="h-12 w-14 object-contain"
+  />
 
         <ul className="hidden items-center gap-7 lg:flex">
           {siteConfig.navLinks.map((link) => (

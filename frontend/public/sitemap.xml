@@ -2,15 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://kkn-plp-terintegrasi-kelompok55.pages.dev/</loc>
+    <loc>https://pusaka-kkn65-kelompok55.pages.dev/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://kkn-plp-terintegrasi-kelompok55.pages.dev/artikel</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
 
 </urlset>

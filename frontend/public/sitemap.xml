@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Homepage -->
   <url>
     <loc>https://pusaka-kkn65-kelompok55.pages.dev/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Artikel 1 -->
+  <url>
+    <loc>https://pusaka-kkn65-kelompok55.pages.dev/artikel/6a772f09b6d5324f1bef4fc6</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Artikel 2 -->
+  <url>
+    <loc>https://pusaka-kkn65-kelompok55.pages.dev/artikel/6a745a59a39ef48670443e7a</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Artikel 3 -->
+  <url>
+    <loc>https://pusaka-kkn65-kelompok55.pages.dev/artikel/6a745a59a39ef48670443e7b</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Artikel 4 -->
+  <url>
+    <loc>https://pusaka-kkn65-kelompok55.pages.dev/artikel/6a745a59a39ef48670443e7c</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Artikel 5 -->
+  <url>
+    <loc>https://pusaka-kkn65-kelompok55.pages.dev/artikel/6a745a59a39ef48670443e7d</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Artikel 6 -->
+  <url>
+    <loc>https://pusaka-kkn65-kelompok55.pages.dev/artikel/6a745a59a39ef48670443e7e</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
 </urlset>

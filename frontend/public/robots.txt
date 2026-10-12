@@ -1,4 +1,5 @@
+
 User-agent: *
 Allow: /
 
-Sitemap: https://kkn-plp-terintegrasi-kelompok55.pages.dev/sitemap.xml
+Sitemap: https://pusaka-kkn65-kelompok55.pages.dev/sitemap.xml
